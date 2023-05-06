@@ -7,8 +7,6 @@ if len(sys.argv) < 3:
     print("Erreur : spécifiez un mot clé à rechercher et le chemin vers le dossier des fichiers PDF")
     sys.exit(1)
 
-# Chemin d'accès au dossier contenant les fichiers PDF à rechercher
-# folderPath = "/Users/regis/Documents/00-administration/64-ccp/2022"
 
 folderPath = sys.argv[2]
 
