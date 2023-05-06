@@ -3,16 +3,18 @@ import sys
 import PyPDF4
 from datetime import datetime
 
-if len(sys.argv) < 3:
+if len(sys.argv) < 4:
     print("Erreur : spécifiez un mot clé à rechercher et le chemin vers le dossier des fichiers PDF")
     sys.exit(1)
 
 
-folderPath = sys.argv[2]
+folderPath = sys.argv[3]
 
 # Mot-clé à rechercher dans les fichiers PDF
 
-keyword = sys.argv[1]
+keywordToSearch = sys.argv[1]
+
+keywordToWrite = sys.argv[2]
 
 # Parcours de tous les fichiers du dossier
 
@@ -32,23 +34,23 @@ for filename in os.listdir(folderPath):
                 text = text0.replace("\n", "")
 
                 for line in text.splitlines():
-                  pos = text.find(keyword)
+                  pos = text.find(keywordToSearch)
                   occurences = []
                   while pos != -1:
                       occurences.append(pos)
-                      pos = text.find (keyword, pos+1)  
+                      pos = text.find (keywordToSearch, pos+1)  
 
                   if occurences:
                     for pos in occurences:  
                         item = {}
                         start = pos-8
-                        end = pos + len(keyword) + 8
-                        pos0 = pos + len(keyword)
+                        end = pos + len(keywordToSearch) + 8
+                        pos0 = pos + len(keywordToSearch)
                         text0 = text[start:start+5]
                         item["date"] = text0
                         item["value"] = text[pos0:end]
                         item["value"] = item["value"].replace(",",".")
-                        item["keyword"] = keyword
+                        item["keyword"] = keywordToWrite
                         items.append(item)
 
 sorted_items = sorted (items, key=lambda x: datetime.strptime(x["date"], '%d/%m' ))

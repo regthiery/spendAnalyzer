@@ -20,7 +20,7 @@
 
 01. Exécutez le programme :
 
-`python3 SpendAnalyzer.py keyword folderPath`
+`python3 SpendAnalyzer.py keywordToSearch keuwordToPrint folderPath`
 
 02. Les résultats de l'extraction sont affichés sur Terminal
 
